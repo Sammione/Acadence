@@ -76,3 +76,4 @@ The API runs at: `http://localhost:8080`
 - Add Redis for caching expensive AI queries.
 - Implement file upload handling (Multer/S3).
 - Connect real Plagiarism API (e.g., Copyleaks).
+# Scholarai
