@@ -1,19 +1,19 @@
 {
-  "name": "scholar-ai-frontend",
-  "private": true,
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.11.4",
-    "@types/node": "^20.11.16",
-    "nuxt": "^3.10.1",
-    "vue": "^3.4.15",
-    "vue-router": "^4.2.5",
-    "typescript": "^5.3.3"
-  }
+    "name": "scholar-ai-frontend",
+    "private": true,
+    "scripts": {
+        "build": "nuxt generate",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare"
+    },
+    "devDependencies": {
+        "@nuxtjs/tailwindcss": "^6.11.4",
+        "@types/node": "^20.11.16",
+        "nuxt": "^3.10.1",
+        "vue": "^3.4.15",
+        "vue-router": "^4.2.5",
+        "typescript": "^5.3.3"
+    }
 }
