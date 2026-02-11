@@ -6,6 +6,8 @@ import DashboardLayout from './layouts/DashboardLayout.vue'
 import DashboardHome from './pages/dashboard/Home.vue'
 import AssignmentAssistant from './pages/dashboard/AssignmentAssistant.vue'
 import ResearchAssistant from './pages/dashboard/ResearchAssistant.vue'
+import PlagiarismChecker from './pages/dashboard/PlagiarismChecker.vue'
+import ThesisBuilder from './pages/dashboard/ThesisBuilder.vue'
 
 const routes = [
     { path: '/', component: LandingPage },
@@ -17,7 +19,9 @@ const routes = [
         children: [
             { path: '', component: DashboardHome },
             { path: 'assignments', component: AssignmentAssistant },
-            { path: 'research', component: ResearchAssistant }
+            { path: 'research', component: ResearchAssistant },
+            { path: 'plagiarism', component: PlagiarismChecker },
+            { path: 'thesis-builder', component: ThesisBuilder }
         ]
     }
 ]

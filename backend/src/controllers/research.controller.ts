@@ -22,4 +22,17 @@ export class ResearchController {
             return res.status(500).json({ error: 'Failed to search papers' });
         }
     }
+
+    async generateThesis(req: Request, res: Response) {
+        try {
+            const { topic, level } = req.body;
+            if (!topic) return res.status(400).json({ error: 'Topic is required' });
+
+            const result = await this.researchService.generateFullThesis(topic, level);
+            return res.json(result);
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ error: 'Failed to generate research' });
+        }
+    }
 }

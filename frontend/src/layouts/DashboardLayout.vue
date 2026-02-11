@@ -32,6 +32,14 @@
            <span class="text-sm font-bold">E-Library Core</span>
         </router-link>
 
+        <router-link to="/dashboard/plagiarism" active-class="bg-white/10 text-white translate-x-1 border-l-4 border-emerald-400" class="flex items-center space-x-3 px-4 py-3.5 text-white/60 rounded-2xl hover:bg-white/5 hover:text-white transition-all duration-300 group">
+           <span class="text-sm font-bold">Plagiarism Audit</span>
+        </router-link>
+
+        <router-link to="/dashboard/thesis-builder" active-class="bg-white/10 text-white translate-x-1 border-l-4 border-amber-400" class="flex items-center space-x-3 px-4 py-3.5 text-white/60 rounded-2xl hover:bg-white/5 hover:text-white transition-all duration-300 group">
+           <span class="text-sm font-bold">Thesis Architect</span>
+        </router-link>
+
         <div class="pt-6 pb-2 px-4 text-[10px] font-black text-white/30 uppercase tracking-[0.2em]">Account</div>
         <div class="flex items-center space-x-3 px-4 py-3.5 text-white/30 rounded-2xl cursor-not-allowed">
            <span class="text-sm font-bold">Subscription</span>

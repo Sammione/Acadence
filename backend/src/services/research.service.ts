@@ -1,24 +1,19 @@
 import axios from 'axios';
 import { parseStringPromise } from 'xml2js';
+import { openai } from '../app';
 
 export class ResearchService {
 
     async searchPapers(query: string, source: string = 'all') {
         let results: any[] = [];
-
-        // 1. Search arXiv (Open Access, CS/Math/Physics)
         if (source === 'all' || source === 'arxiv') {
             const arxivResults = await this.searchArxiv(query);
             results = [...results, ...arxivResults];
         }
-
-        // 2. Mock Google Scholar (Since no official free API exists without SerpApi)
-        // We will generate mocked "High Quality" results to demonstrate the UI
         if (source === 'all' || source === 'scholar') {
             const scholarResults = this.mockGoogleScholar(query);
             results = [...results, ...scholarResults];
         }
-
         return {
             results: results,
             total: results.length,
@@ -26,14 +21,43 @@ export class ResearchService {
         };
     }
 
+    async generateFullThesis(topic: string, level: string = 'Undergraduate') {
+        try {
+            const structurePrompt = `
+          You are leading a research team at a top university.
+          Topic: "${topic}"
+          Level: ${level}
+          
+          Generate a detailed 7-chapter Thesis/Research Outline.
+          For each chapter, provide:
+          1. Title
+          2. Key research objectives
+          3. A 500-word detailed synopsis of the content.
+          
+          Ensure this is academically rigorous and provides a foundation for a full 100-page dissertation.
+          Format the output in clear, structured markdown.
+        `;
+
+            const completion = await openai.chat.completions.create({
+                messages: [{ role: 'user', content: structurePrompt }],
+                model: 'gpt-4o',
+            });
+
+            return {
+                topic,
+                chapters: completion.choices[0].message.content,
+                timestamp: new Date().toISOString()
+            };
+        } catch (error) {
+            throw error;
+        }
+    }
+
     private async searchArxiv(query: string) {
         try {
-            // arXiv API: http://export.arxiv.org/api/query?search_query=all:electron&start=0&max_results=5
             const response = await axios.get(`http://export.arxiv.org/api/query?search_query=all:${encodeURIComponent(query)}&start=0&max_results=5`);
             const data = await parseStringPromise(response.data);
-
             if (!data.feed.entry) return [];
-
             return data.feed.entry.map((entry: any) => ({
                 id: entry.id[0],
                 title: entry.title[0].replace(/\n/g, ' ').trim(),
@@ -44,7 +68,6 @@ export class ResearchService {
                 published: entry.published[0],
                 source: 'arXiv'
             }));
-
         } catch (error) {
             console.error("Arxiv Search Error", error);
             return [];
@@ -52,7 +75,6 @@ export class ResearchService {
     }
 
     private mockGoogleScholar(query: string) {
-        // Return realistic-looking mock data for demo
         return [
             {
                 id: 'gs_1',

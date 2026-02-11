@@ -19,6 +19,8 @@ app.use(express.json());
 // Routes
 import assignmentRoutes from './routes/assignment.routes';
 import researchRoutes from './routes/research.routes';
+import authRoutes from './routes/auth.routes';
+import plagiarismRoutes from './routes/plagiarism.routes';
 
 app.get('/', (req, res) => {
     res.json({ message: 'ScholarAI Backend API Running' });
@@ -26,6 +28,8 @@ app.get('/', (req, res) => {
 
 app.use('/api/assignments', assignmentRoutes);
 app.use('/api/research', researchRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/plagiarism', plagiarismRoutes);
 
 // OpenAI Config
 export const openai = new OpenAI({
